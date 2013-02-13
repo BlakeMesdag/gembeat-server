@@ -58,11 +58,5 @@ module GembeatServer
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    config.after_initialize do
-      Gembeat.pulse_url = "http://localhost:3000/pulse"
-      Gembeat.token = "token"
-      Gembeat.send_pulse
-    end
   end
 end
