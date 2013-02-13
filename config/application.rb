@@ -60,7 +60,7 @@ module GembeatServer
     config.assets.version = '1.0'
 
     config.after_initialize do
-      Gembeat.pulse_url = "http://localhost:3000/pulse.json"
+      Gembeat.pulse_url = "http://localhost:3000/pulse"
       Gembeat.token = "token"
       Gembeat.send_pulse
     end
