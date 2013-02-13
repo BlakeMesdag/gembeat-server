@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+gembeat:
+  name: Gembeat
+  description: Super awesome rails application
+  token: testtoken

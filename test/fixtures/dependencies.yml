@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+gembeat_depencies:
+  application: gembeat
+  name: rails
+  version: "3.2.12"
+  major_version: 3
+  minor_version: 2
+  build: .12
