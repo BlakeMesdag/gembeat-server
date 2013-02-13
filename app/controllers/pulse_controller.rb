@@ -1,4 +1,5 @@
 class PulseController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_filter :load_application, :only => :create
 
   respond_to :json, :xml, :only => :create

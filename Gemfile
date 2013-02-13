@@ -21,3 +21,9 @@ gem 'omniauth'
 gem 'omniauth-google-apps'
 
 gem 'less-rails-bootstrap'
+
+group :development do
+  gem 'debugger'
+end
+
+gem 'json'
