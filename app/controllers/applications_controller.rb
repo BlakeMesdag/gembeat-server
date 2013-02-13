@@ -1,4 +1,6 @@
 class ApplicationsController < ApplicationController
+  before_filter :authenticate
+
   before_filter :load_application, :except => [:index, :create, :new]
 
   def index
