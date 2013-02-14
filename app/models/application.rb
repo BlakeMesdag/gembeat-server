@@ -6,7 +6,10 @@ class Application < ActiveRecord::Base
   accepts_nested_attributes_for :dependencies
 
   def update_dependencies(values)
+    dependency_names = []
     values.each do |value|
+      dependency_names << value["name"]
+
       current_dependency = dependencies.where(:name => value["name"]).first
       current_dependency ||= dependencies.new(:name => value["name"], :version => value["version"])
 
@@ -14,6 +17,8 @@ class Application < ActiveRecord::Base
 
       current_dependency.save!
     end
+
+    dependencies.where("dependencies.name NOT IN (?)", dependency_names).delete_all
   end
 
   private

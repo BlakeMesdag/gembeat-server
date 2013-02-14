@@ -31,4 +31,8 @@ group :development do
   gem 'sqlite3'
 end
 
+group :test do
+  gem 'mocha'
+end
+
 gem 'json'

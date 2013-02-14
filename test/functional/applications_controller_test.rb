@@ -3,6 +3,7 @@ require 'test_helper'
 class ApplicationsControllerTest < ActionController::TestCase
   def setup
     @application = applications(:gembeat)
+    @controller.stubs(:authenticate).returns(nil)
   end
 
   test "should get index" do
