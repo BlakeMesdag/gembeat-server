@@ -10,9 +10,7 @@ http://github.com/BlakeMesdag/gembeat
 
 Authentication is currently setup to use Google Apps, you can change this by modifying config/initializers/omniauth.rb
 
-```ruby
-require 'openid/store/filesystem'
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_apps, :domain => '<your domain goes here>', :name => 'google'
-end
-```
+  require 'openid/store/filesystem'
+  Rails.application.config.middleware.use OmniAuth::Builder do
+    provider :google_apps, :domain => '<your domain goes here>', :name => 'google'
+  end
