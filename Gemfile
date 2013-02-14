@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,6 +26,7 @@ gem 'less-rails-bootstrap'
 
 group :development do
   gem 'debugger'
+  gem 'sqlite3'
 end
 
 gem 'json'
