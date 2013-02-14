@@ -1,0 +1,22 @@
+<%= form_for(application, html: { class: "form"}) do |f| %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, class: "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :description, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :description, class: "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "Save", class: "btn btn-primary" %> <%= link_to "Cancel", url_for(application), class: "btn" %>
+    </div>
+  </div>
+<% end %>

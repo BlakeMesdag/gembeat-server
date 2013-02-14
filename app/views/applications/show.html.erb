@@ -1,2 +1,37 @@
-<h1>Applications#show</h1>
-<p>Find me in app/views/applications/show.html.erb</p>
+<div class="row">
+  <div class="span12">
+    <h1>
+      <%= @application.name %>
+      <%= link_to "Edit", edit_application_url(@application), class: "btn btn-success" %>
+      <%= form_for(@application, method: :delete, html: { style: "display: inline"}) do |f| %>
+        <%= f.submit "Destroy", class: "btn btn-danger", confirm: "Are you sure you want to delete #{@application.name}?" %>
+      <% end %>
+    </h1>
+    <h3>Pulse Token: <%= @application.token %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+  </div>
+</div>
+
+<div class="row" style="margin-top: 10px">
+  <div class="span12">
+    <table class="table table-condensed">
+      <thead>
+        <th>Name</th>
+        <th>Version</th>
+      </thead>
+
+      <tbody>
+        <% @application.dependencies.each do |dependency| %>
+        <tr>
+          <td><%= dependency.name %></td>
+          <td><%= dependency.version %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

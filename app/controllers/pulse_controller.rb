@@ -9,7 +9,8 @@ class PulseController < ApplicationController
       return render :json => {}, :status => 404
     end
 
-    params[:application][:dependencies_attributes] = params[:application].delete(:dependencies)
+    dependencies = params[:application].delete(:dependencies)
+    @application.update_dependencies(dependencies)
 
     @application.update_attributes(params[:application])
     respond_with(@application)

@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GembeatServer</title>
+  <title>Gembeat Server</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <a class="brand" href="/" style="margin-left: 10px">Gembeat</a>
+
+      <ul class="nav">
+        <li><a href="<%= new_application_url %>">Add Application</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <%= yield %>
+</div>
 
 </body>
 </html>
