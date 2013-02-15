@@ -9,7 +9,7 @@ class DependenciesController < ApplicationController
     @dependencies = dependency_names.map do |name|
       {
         :name => name,
-        :versions => Dependency.where(:name => name).map { |d| "<a href=\"#{url_for(action: :show, id: d.name, version: d.version)}\">#{d.version}</a>"  }
+        :versions => Dependency.select([:name,:version]).uniq.where(:name => name).map { |d| "<a href=\"#{url_for(action: :show, id: d.name, version: d.version)}\">#{d.version}</a>"  }
       }
     end
   end

@@ -13,7 +13,7 @@
         <%= link_to dependency.application.name, url_for(dependency.application) %>
       </td>
       <td>
-        <%= dependency.version %>
+        <%= link_to dependency.version, url_for(version: dependency.version) %>
       </td>
     </tr>
     <% end %>
