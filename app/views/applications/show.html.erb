@@ -11,11 +11,6 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="span12">
-  </div>
-</div>
-
 <div class="row" style="margin-top: 10px">
   <div class="span12">
     <table class="table table-condensed">
@@ -27,8 +22,12 @@
       <tbody>
         <% @application.dependencies.each do |dependency| %>
         <tr>
-          <td><%= dependency.name %></td>
-          <td><%= dependency.version %></td>
+          <td>
+            <%= link_to dependency.name, url_for(controller: :dependencies, action: :show, id: dependency.name) %>
+          </td>
+          <td>
+            <%= link_to dependency.version,url_for(controller: :dependencies, action: :show, id: dependency.name, version: dependency.version) %>
+          </td>
         </tr>
         <% end %>
       </tbody>

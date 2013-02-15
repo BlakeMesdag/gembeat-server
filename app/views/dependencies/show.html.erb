@@ -1,0 +1,21 @@
+<h3>Applications using <%= params[:id].to_s %>:</h3>
+
+<table class="table table-condensed">
+  <thead>
+    <th>Name</th>
+    <th>Version</th>
+  </thead>
+
+  <tbody>
+    <% @dependencies.each do |dependency| %>
+    <tr>
+      <td>
+        <%= link_to dependency.application.name, url_for(dependency.application) %>
+      </td>
+      <td>
+        <%= dependency.version %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

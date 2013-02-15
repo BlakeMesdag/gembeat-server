@@ -5,6 +5,7 @@ GembeatServer::Application.routes.draw do
 
   resources :applications
   resources :pulse, :only => [:create]
+  resources :dependencies, :only => [:index, :show]
 
   root :to => "applications#index"
 end
