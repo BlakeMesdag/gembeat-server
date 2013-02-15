@@ -19,6 +19,8 @@ class Application < ActiveRecord::Base
     end
 
     dependencies.where("dependencies.name NOT IN (?)", dependency_names).delete_all
+
+    touch
   end
 
   private

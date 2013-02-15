@@ -23,4 +23,12 @@ class ApplicationTest < ActiveSupport::TestCase
     assert_equal 1, @application.dependencies.count
     assert_equal "rake", @application.dependencies.first.name
   end
+
+  test "updating dependencies touches updated_at" do
+    old_updated_at = @application.updated_at
+
+    @application.update_dependencies([])
+
+    assert_not_equal old_updated_at, @application.reload.updated_at
+  end
 end
