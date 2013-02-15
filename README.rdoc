@@ -5,3 +5,12 @@ This is a server for collecting information from applications about what Gems th
 The associated gem to use is called "gembeat" and is available here:
 
 http://github.com/BlakeMesdag/gembeat
+
+== Configuration
+
+Authentication is currently setup to use Google Apps, you can change this by modifying config/initializers/omniauth.rb
+
+  require 'openid/store/filesystem'
+  Rails.application.config.middleware.use OmniAuth::Builder do
+    provider :google_apps, :domain => '<your domain goes here>', :name => 'google'
+  end
