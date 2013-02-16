@@ -21,7 +21,7 @@
       <tr>
         <td><%= link_to application.name, application_url(application) %></td>
         <td><%= application.description %></td>
-        <td></td>
+        <td><%= application.github_url %></td>
         <td><%= application.dependencies.count %>
       </tr>
       <% end %>

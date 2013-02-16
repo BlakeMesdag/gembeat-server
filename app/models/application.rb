@@ -1,5 +1,5 @@
 class Application < ActiveRecord::Base
-  attr_accessible :description, :name, :dependencies_attributes
+  attr_accessible :description, :name, :dependencies_attributes, :github_url
 
   has_many :dependencies, :dependent => :delete_all
 
