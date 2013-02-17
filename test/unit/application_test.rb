@@ -31,4 +31,10 @@ class ApplicationTest < ActiveSupport::TestCase
 
     assert_not_equal old_updated_at, @application.reload.updated_at
   end
+
+  test "cannot create two applications with the same name" do
+    assert_difference "Application.count", 0 do
+      Application.create(:name => @application.name)
+    end
+  end
 end
