@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-gembeat_depency:
+gembeat_dependency:
   application: gembeat
   name: rails
   version: "3.2.12"
