@@ -3,4 +3,9 @@
 gembeat_dependency:
   application: gembeat
   name: rails
-  version: "3.2.12"
+  version: 3.2.12
+
+ruby_dependency:
+  application: ruby
+  name: rails
+  version: 3.1.11

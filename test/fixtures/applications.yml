@@ -4,3 +4,8 @@ gembeat:
   name: Gembeat
   description: Super awesome rails application
   token: testtoken
+
+ruby:
+  name: Ruby
+  description: Ruby application
+  token: secondtoken
