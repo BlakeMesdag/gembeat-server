@@ -14,4 +14,9 @@ class SessionsController < ApplicationController
       redirect_to redirect_to.nil? ? "/" : redirect_to
     end
   end
+
+  def destroy
+    reset_session
+    render :logout, :layout => "sessions"
+  end
 end
