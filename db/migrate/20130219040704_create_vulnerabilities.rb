@@ -5,9 +5,11 @@ class CreateVulnerabilities < ActiveRecord::Migration
       t.string :identifier
       t.string :url
       t.text :description
-      t.text :metadata
+      t.text :versions
 
       t.timestamps
     end
+
+    add_index :dependency_name
   end
 end
