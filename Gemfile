@@ -2,10 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 
-gem 'thin'
-
 group :production do
   gem 'pg'
+  gem 'unicorn'
 end
 
 # Gems used only for assets and not required
@@ -29,6 +28,7 @@ gem 'less-rails-bootstrap'
 group :development do
   gem 'debugger'
   gem 'sqlite3'
+  gem 'thin'
 end
 
 group :test do
