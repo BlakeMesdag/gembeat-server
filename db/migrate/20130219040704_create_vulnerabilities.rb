@@ -10,6 +10,6 @@ class CreateVulnerabilities < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :dependency_name
+    add_index :vulnerabilities, :dependency_name
   end
 end
