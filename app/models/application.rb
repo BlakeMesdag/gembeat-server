@@ -2,6 +2,7 @@ class Application < ActiveRecord::Base
   attr_accessible :description, :name, :github_url
 
   has_many :dependencies, dependent: :delete_all
+  has_many :vulnerability_assessments, through: :dependencies
 
   def update_dependencies(values)
     dependency_names = values.map {|v| v["name"]}
