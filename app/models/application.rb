@@ -1,7 +1,7 @@
 class Application < ActiveRecord::Base
   attr_accessible :description, :name, :github_url
 
-  has_many :dependencies, :dependent => :delete_all
+  has_many :dependencies, dependent: :delete_all
 
   def update_dependencies(values)
     dependency_names = values.map {|v| v["name"]}
@@ -22,6 +22,12 @@ class Application < ActiveRecord::Base
 
   def generate_token
     self.token = SecureRandom.hex(32)
+  end
+
+  def assess_dependencies_for_vulnerabilities
+    dependencies.each do |dependency|
+      dependency.assess_vulnerabilities
+    end
   end
 
   private

@@ -37,4 +37,10 @@ class ApplicationTest < ActiveSupport::TestCase
       Application.create(:name => @application.name)
     end
   end
+
+  test "assess_vulnerabilities returns a list of vulernability_assessments" do
+    assert_difference "VulnerabilityAssessment.count", 1 do
+      @application.assess_dependencies_for_vulnerabilities
+    end
+  end
 end

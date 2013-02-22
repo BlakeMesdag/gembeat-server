@@ -5,11 +5,24 @@ rails:
   identifier: CVE-2013-21660
   url: http://somecverepo.com/cve-2013-21660
   description: A vulernability in rails
-  versions:
+  versions: |
+    ---
+      - 3.2.12
+
+rails_old:
+  dependency_name: rails
+  identifier: CVE-2012-12345
+  url: http://somecverepo.com/cve-2013-21660
+  description: A vulernability in rails from 2012
+  versions: |
+    ---
+      - 3.2.11
 
 json:
   dependency_name: json
   identifier: CVE-123-4567
   url: http://someurl.com/CVE-123-4567
   description: A vulernability in json
-  versions: 
+  versions: |
+    ---
+      - 1.7.7
