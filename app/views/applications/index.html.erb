@@ -1,4 +1,4 @@
-<h3>Current Applications</h3>
+<h3>Applications <%= link_to raw('<i class="icon icon-plus icon-white"></i> Add'), new_application_url, class: "btn btn-small btn-success" %></h3>
 
 <%= form_tag"/", method: :get, class: "form form-search" do %>
   <%= text_field_tag :gem, params["gem"], placeholder: "gem name (ex. rake)", class: "search-query" %>
@@ -14,6 +14,7 @@
       <th>Description</th>
       <th>Github Url</th>
       <th># of Dependencies</th>
+      <th>Vulnerable?</th>
     </thead>
 
     <tbody>
@@ -22,7 +23,8 @@
         <td><%= link_to application.name, application_url(application) %></td>
         <td><%= application.description %></td>
         <td><% if application.github_url %><%= link_to application.github_url, application.github_url %><% end %></td>
-        <td><%= application.dependencies.count %>
+        <td><%= application.dependencies.count %></td>
+        <td><%= application.dependencies.any?(&:vulnerable?) ? "Yes" : "No" %></td>
       </tr>
       <% end %>
     </tbody>
