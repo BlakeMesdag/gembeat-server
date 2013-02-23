@@ -6,7 +6,7 @@ class PulseController < ApplicationController
 
   def create
     unless @application
-      return render :json => {}, :status => 404
+      return render_404
     end
 
     dependencies = params[:application].delete(:dependencies)

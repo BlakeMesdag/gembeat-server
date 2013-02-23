@@ -4,6 +4,7 @@
   <thead>
     <th>Name</th>
     <th>Version</th>
+    <th>Vulnerable?</th>
   </thead>
 
   <tbody>
@@ -14,6 +15,9 @@
       </td>
       <td>
         <%= link_to dependency.version, url_for(version: dependency.version) %>
+      </td>
+      <td>
+        <%= dependency.vulnerable? ? "Yes" : "No" %>
       </td>
     </tr>
     <% end %>

@@ -1,7 +1,7 @@
 class ApplicationsController < ApplicationController
   before_filter :authenticate
 
-  before_filter :load_application, except: [:index, :create, :new]
+  before_filter :load_application, only: [:show, :edit, :update, :destroy]
 
   OPERATORS = {"=" => "=", ">" => ">", "<" => "<", "" => "="}
 
@@ -47,6 +47,8 @@ class ApplicationsController < ApplicationController
   private
 
   def load_application
-    @application = Application.find(params[:id].to_i)
+    @application = Application.where(id: params[:id].to_i).first
+
+    return render_404 unless @application
   end
 end

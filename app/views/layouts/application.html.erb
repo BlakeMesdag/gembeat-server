@@ -14,12 +14,19 @@
       <a class="brand" href="/" style="margin-left: 10px">Gembeat</a>
 
       <ul class="nav">
-        <li><%= link_to "Add Application", new_application_url %></li>
-        <li><%= link_to "All Dependencies", dependencies_url %></li>
+        <li class="<%= params[:controller] =~ /applications/ ? "active" : "" %>">
+          <%= link_to "Applications", applications_url %>
+        </li>
+        <li class="<%= params[:controller] =~ /dependencies/ ? "active" : "" %>">
+          <%= link_to "Dependencies", dependencies_url %>
+        </li>
+        <li class="<%= params[:controller] =~ /vulnerabilities/ ? "active" : "" %>">
+          <%= link_to "Vulnerabilities", vulnerabilities_url %>
+        </li>
       </ul>
 
       <ul class="nav pull-right">
-        <li><%= link_to "Logout", logout_url %><li>
+        <li><%= link_to "Logout", logout_url %></li>
       </ul>
     </div>
   </div>

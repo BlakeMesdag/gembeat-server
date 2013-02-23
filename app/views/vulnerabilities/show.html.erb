@@ -1,0 +1,49 @@
+<h3 class="page-header">
+  <%= @vulnerability.title %>
+  <%= link_to "Edit", edit_vulnerability_url(@vulnerability), class: "btn btn-small btn-success" %>
+  <%= form_for(@vulnerability, method: :delete, html: { style: "display: inline"}) do |f| %>
+    <%= f.submit "Destroy", class: "btn btn-small btn-danger", confirm: "Are you sure you want to delete #{@vulnerability.identifier}?" %>
+  <% end %>
+</h3>
+
+<div class="well well-small">
+  <div>
+    <h3 style="display: inline">Dependency name: </h3>
+    <h4 style="display: inline-block"><%= @vulnerability.dependency_name %></h4>
+  </div>
+
+  <div>
+    <h3 style="display: inline">Identifier: </h3>
+    <h4 style="display: inline-block"><%= @vulnerability.identifier %></h4>
+  </div>
+
+  <div>
+    <h3 style="display: inline">Url: </h3>
+    <h4 style="display: inline-block"><%= link_to  @vulnerability.url,  @vulnerability.url %></h4>
+  </div>
+
+  <div>
+    <h3 style="display: inline">Description: </h3>
+    <h4><%= @vulnerability.description %></h4>
+  </div>
+</div>
+
+<h3>Vulnerability Assessments</h3>
+
+<table class="table table-condensed">
+  <thead>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Vulnerable?</th>
+  </thead>
+
+  <tbody>
+    <% @vulnerability.vulnerability_assessments.each do |assessment| %>
+    <tr>
+      <td><%= link_to assessment.dependency.application.name, url_for(assessment.dependency.application) %></td>
+      <td><%= assessment.dependency.version %></td>
+      <td><%= assessment.vulnerable ? "Yes" : "No" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -7,6 +7,7 @@ GembeatServer::Application.routes.draw do
   resources :applications
   resources :pulse, :only => [:create]
   resources :dependencies, :only => [:index, :show]
+  resources :vulnerabilities
 
   root :to => "applications#index"
 end
