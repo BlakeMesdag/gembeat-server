@@ -24,7 +24,7 @@
         <td><%= application.description %></td>
         <td><% if application.github_url %><%= link_to application.github_url, application.github_url %><% end %></td>
         <td><%= application.dependencies.count %></td>
-        <td><%= application.dependencies.any?(&:vulnerable?) ? "Yes" : "No" %></td>
+        <td><%= application.vulnerable? ? "Yes" : "No" %></td>
       </tr>
       <% end %>
     </tbody>

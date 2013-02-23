@@ -28,12 +28,12 @@ class DependenciesControllerTest < ActionController::TestCase
   test "show links to all applications with a dependency name" do
     get :show, :id => "rails"
 
-    assert_select 'a[href*="/applications/"]', 3
+    assert_select 'a[href*="/applications/"]', 2
   end
 
   test "show only links to applications with a given version" do
     get :show, id: "rails", version: "3.2.12"
 
-    assert_select 'a[href*="/applications/"]', 2
+    assert_select 'a[href*="/applications/"]', 1
   end
 end

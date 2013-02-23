@@ -7,7 +7,7 @@ rails:
   description: A vulernability in rails
   versions: |
     ---
-      - 3.2.12
+      - ~> 3.2.12
 
 rails_old:
   dependency_name: rails
@@ -16,7 +16,7 @@ rails_old:
   description: A vulernability in rails from 2012
   versions: |
     ---
-      - 3.2.11
+      - ~> 3.2.11
 
 json:
   dependency_name: json
@@ -25,4 +25,4 @@ json:
   description: A vulernability in json
   versions: |
     ---
-      - 1.7.7
+      - >= 1.7.7

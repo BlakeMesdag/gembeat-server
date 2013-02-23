@@ -61,7 +61,7 @@ class DependencyTest < ActiveSupport::TestCase
   end
 
   test "vulnerable? returns true if changing to a vulnerable version " do
-    @dependency.update_attributes(version: "3.2.1.0")
+    @dependency.update_attributes(version: "3.2.10")
 
     assert_equal true, @dependency.vulnerable?
   end

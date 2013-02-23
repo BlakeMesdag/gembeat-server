@@ -33,6 +33,10 @@ class Application < ActiveRecord::Base
     end
   end
 
+  def vulnerable?
+    vulnerability_assessments.where(vulnerable: true).any?
+  end
+
   private
 
   validates :name, :uniqueness => true

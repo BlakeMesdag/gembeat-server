@@ -1,27 +1,34 @@
-<h3>
-  <%= @vulnerability.dependency_name %>
+<h3 class="page-header">
+  <%= @vulnerability.title %>
   <%= link_to "Edit", edit_vulnerability_url(@vulnerability), class: "btn btn-small btn-success" %>
   <%= form_for(@vulnerability, method: :delete, html: { style: "display: inline"}) do |f| %>
     <%= f.submit "Destroy", class: "btn btn-small btn-danger", confirm: "Are you sure you want to delete #{@vulnerability.identifier}?" %>
   <% end %>
 </h3>
 
-<div>
-  <h3 style="display: inline">Identifier: </h3>
-  <h4 style="display: inline-block"><%= @vulnerability.identifier %></h4>
+<div class="well well-small">
+  <div>
+    <h3 style="display: inline">Dependency name: </h3>
+    <h4 style="display: inline-block"><%= @vulnerability.dependency_name %></h4>
+  </div>
+
+  <div>
+    <h3 style="display: inline">Identifier: </h3>
+    <h4 style="display: inline-block"><%= @vulnerability.identifier %></h4>
+  </div>
+
+  <div>
+    <h3 style="display: inline">Url: </h3>
+    <h4 style="display: inline-block"><%= link_to  @vulnerability.url,  @vulnerability.url %></h4>
+  </div>
+
+  <div>
+    <h3 style="display: inline">Description: </h3>
+    <h4><%= @vulnerability.description %></h4>
+  </div>
 </div>
 
-<div>
-  <h3 style="display: inline">Url: </h3>
-  <h4 style="display: inline-block"><%= link_to  @vulnerability.url,  @vulnerability.url %></h4>
-</div>
-
-<div>
-  <h3 style="display: inline">Description: </h3>
-  <h4><%= @vulnerability.description %></h4>
-</div>
-
-<h3 class="page-header">Vulnerability Assessments</h3>
+<h3>Vulnerability Assessments</h3>
 
 <table class="table table-condensed">
   <thead>

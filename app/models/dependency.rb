@@ -21,7 +21,7 @@ class Dependency < ActiveRecord::Base
     vulnerable = vulnerability.dependency_vulnerable?(self)
 
     assessment = vulnerability_assessments.where(vulnerability_id: vulnerability.id).first
-    assessment ||= vulnerability_assessments.new(vulnerability_id: vulnerability.id)
+    assessment ||= vulnerability_assessments.new(vulnerability_id: vulnerability.id, application_id: application_id)
 
     assessment.vulnerable = vulnerable
     assessment.save if assessment.changed? || assessment.new_record?

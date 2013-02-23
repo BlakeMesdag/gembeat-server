@@ -3,21 +3,19 @@
 <% if @vulnerabilities.count > 0 %>
   <table class="table table-condensed">
     <thead>
-      <th>Name</th>
+      <th class="span4">Title</th>
+      <th>Dependency Name</th>
       <th>Identifier</th>
-      <th>Url</th>
-      <th>Description</th>
       <th>Versions</th>
     </thead>
 
     <tbody>
       <% @vulnerabilities.each do |vulnerability| %>
       <tr>
-        <td><%= link_to vulnerability.dependency_name, url_for(vulnerability) %></td>
-        <td><%= vulnerability.identifier %></td>
-        <td><%= link_to vulnerability.url, vulnerability.url %></td>
-        <td><%= vulnerability.description %></td>
-        <td><%= vulnerability.versions.join(", ") %></td>
+        <td><%= link_to vulnerability.title, url_for(vulnerability) %></td>
+        <td><%= vulnerability.dependency_name %></td>
+        <td><%= link_to vulnerability.identifier, vulnerability.url %></td>
+        <td><%= vulnerability.versions.join("<br />").html_safe %></td>
       </tr>
       <% end %>
     </tbody>
