@@ -9,18 +9,28 @@ class Dependency < ActiveRecord::Base
 
   def assess_vulnerabilities
     Vulnerability.where(dependency_name: name).each do |vulnerability|
-      vulnerable = vulnerability.assess_dependency(self)
-
-      assessment = vulnerability_assessments.where(vulnerability_id: vulnerability.id).first
-      assessment ||= vulnerability_assessments.new(vulnerability_id: vulnerability.id)
-
-      assessment.vulnerable = vulnerable
-      assessment.save if assessment.changed?
+      assess_vulnerability(vulnerability)
     end
+  end
+
+  def vulnerable?
+    vulnerability_assessments.where(vulnerable: true).any?
+  end
+
+  def assess_vulnerability(vulnerability)
+    vulnerable = vulnerability.dependency_vulnerable?(self)
+
+    assessment = vulnerability_assessments.where(vulnerability_id: vulnerability.id).first
+    assessment ||= vulnerability_assessments.new(vulnerability_id: vulnerability.id)
+
+    assessment.vulnerable = vulnerable
+    assessment.save if assessment.changed? || assessment.new_record?
   end
 
   private
 
   validates :name, uniqueness: {scope: :application_id}, presence: true
   validates :version, presence: true
+
+  before_save :assess_vulnerabilities, :if => :version_changed?
 end

@@ -32,7 +32,7 @@ group :development do
 end
 
 group :test do
-  gem 'mocha'
+  gem 'mocha', :require => false
 end
 
 gem 'json'
