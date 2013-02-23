@@ -1,24 +1,31 @@
 <h3>Vulnerabilities <%= link_to raw('<i class="icon icon-plus icon-white"></i> Add'), new_vulnerability_url, class: "btn btn-small btn-success" %></h3>
 
-<table class="table table-condensed">
-  <thead>
-    <th>Name</th>
-    <th>Identifier</th>
-    <th>Url</th>
-    <th>Description</th>
-    <th>Versions</th>
-  </thead>
+<% if @vulnerabilities.count > 0 %>
+  <table class="table table-condensed">
+    <thead>
+      <th>Name</th>
+      <th>Identifier</th>
+      <th>Url</th>
+      <th>Description</th>
+      <th>Versions</th>
+    </thead>
 
-  <tbody>
-    <% @vulnerabilities.each do |vulnerability| %>
-    <tr>
-      <td><%= link_to vulnerability.dependency_name, url_for(vulnerability) %></td>
-      <td><%= vulnerability.identifier %></td>
-      <td><%= link_to vulnerability.url, vulnerability.url %></td>
-      <td><%= vulnerability.description %></td>
-      <td><%= vulnerability.versions.join(", ") %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    <tbody>
+      <% @vulnerabilities.each do |vulnerability| %>
+      <tr>
+        <td><%= link_to vulnerability.dependency_name, url_for(vulnerability) %></td>
+        <td><%= vulnerability.identifier %></td>
+        <td><%= link_to vulnerability.url, vulnerability.url %></td>
+        <td><%= vulnerability.description %></td>
+        <td><%= vulnerability.versions.join(", ") %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="row">
+    <div class="span12">
+      <p class="muted">No vulnerabilities found</p>
+    </div>
+  </div>
+<% end %>
