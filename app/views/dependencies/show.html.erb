@@ -1,23 +1,19 @@
-<h3>Applications using <%= params[:id].to_s %>:</h3>
+<h3>Applications using "<%= params[:id].to_s %>"<%= " version #{params[:version].to_s}" if params[:version] %>:</h3>
 
 <table class="table table-condensed">
   <thead>
     <th>Name</th>
     <th>Version</th>
-    <th>Vulnerable?</th>
   </thead>
 
   <tbody>
     <% @dependencies.each do |dependency| %>
-    <tr>
+    <tr class="<%= dependency.vulnerable? ? "vulnerable" : "not-vulnerable" %>">
       <td>
         <%= link_to dependency.application.name, url_for(dependency.application) %>
       </td>
       <td>
         <%= link_to dependency.version, url_for(version: dependency.version) %>
-      </td>
-      <td>
-        <%= dependency.vulnerable? ? "Yes" : "No" %>
       </td>
     </tr>
     <% end %>

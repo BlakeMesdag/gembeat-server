@@ -3,16 +3,8 @@ class ApplicationsController < ApplicationController
 
   before_filter :load_application, only: [:show, :edit, :update, :destroy]
 
-  OPERATORS = {"=" => "=", ">" => ">", "<" => "<", "" => "="}
-
   def index
     @applications = Application.includes(:dependencies)
-
-    @applications = @applications.where(dependencies: {name: params[:gem].to_s}) unless params[:gem].blank?
-    if !params[:version].blank?
-      operator = OPERATORS[params[:operator].to_s]
-      @applications = @applications.where("dependencies.version #{operator} ?", params[:version].to_s) if !operator.blank?
-    end
 
     @operators = [["=","="],[">",">"],["<","<"]]
   end

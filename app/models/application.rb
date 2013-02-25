@@ -34,7 +34,7 @@ class Application < ActiveRecord::Base
   end
 
   def vulnerable?
-    vulnerability_assessments.where(vulnerable: true).any?
+    @vulnerable ||= vulnerability_assessments.where(vulnerable: true).any?
   end
 
   private

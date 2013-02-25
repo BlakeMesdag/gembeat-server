@@ -28,22 +28,23 @@
   </div>
 </div>
 
-<h3>Vulnerability Assessments</h3>
-
+<h3>Vulnerable Applications</h3>
+<% if @vulnerability.vulnerability_assessments.vulnerable.any? %>
 <table class="table table-condensed">
   <thead>
     <th>Name</th>
     <th>Version</th>
-    <th>Vulnerable?</th>
   </thead>
 
   <tbody>
-    <% @vulnerability.vulnerability_assessments.each do |assessment| %>
+    <% @vulnerability.vulnerability_assessments.vulnerable.each do |assessment| %>
     <tr>
       <td><%= link_to assessment.dependency.application.name, url_for(assessment.dependency.application) %></td>
       <td><%= assessment.dependency.version %></td>
-      <td><%= assessment.vulnerable ? "Yes" : "No" %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <p class="muted">No vulnerable applications found</p>
+<% end %>
