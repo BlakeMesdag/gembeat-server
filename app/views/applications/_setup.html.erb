@@ -1,0 +1,35 @@
+<h3 class="page-header">Setup Instructions</h3>
+
+<h4>Add Gembeat to your Gemfile</h4>
+<div class="well well-small">
+  gem 'gembeat', '~> 0.0.1'
+</div>
+
+<h4>Add the after_initialize hook to your production.rb</h4>
+<div class="well well-small">
+config.after_initialize do<br/>
+&nbsp;&nbsp;Thread.new do<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.token = "<%= application.token %>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.pulse_url = "<%= ENV['GEMBEAT_URL'] %>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.use_ssl = true<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.send_pulse<br/>
+&nbsp;&nbsp;end<br/>
+end<br/>
+</div>
+
+<h4>Alternate: Using environment variables</h4>
+<div class="well well-small">
+config.after_initialize do<br/>
+&nbsp;&nbsp;Thread.new do<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.token = ENV['GEMBEAT_TOKEN']<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.pulse_url = ENV['GEMBEAT_URL']<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.use_ssl = true<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Gembeat.send_pulse<br/>
+&nbsp;&nbsp;end<br/>
+end<br/>
+</div>
+
+<h4>Setting the token and url on Heroku</h4>
+<div class="well well-small">
+  heroku config:add GEMBEAT_TOKEN="<%= application.token %>" GEMBEAT_URL="<%= ENV['GEMBEAT_URL'] %>"
+</div>
