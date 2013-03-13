@@ -8,15 +8,19 @@ class Application < ActiveRecord::Base
 
   def update_dependencies(values)
     dependency_names = values.map {|v| v["name"]}
+    dependency_hash = {}
+    values.each {|d| dependency_hash[d["name"]] = d["value"]}
 
-    values.each do |value|
-      current_dependency = dependencies.where(:name => value["name"]).first
-      current_dependency ||= dependencies.new(:name => value["name"], :version => value["version"])
-
-      current_dependency.version = value["version"] if current_dependency.version != value["version"]
-
-      current_dependency.save!
+    current_dependencies = dependencies.where(name: dependency_names)
+    current_dependencies.each do |dependency|
+      dependency.version = dependency_hash[dependency.name]
+      dependency.save! if dependency.changed?
     end
+
+    current_dependency_names = current_dependencies.map(&:name)
+    new_dependencies = values.reject {|v| current_dependency_names.include?(v["name"])}
+
+    dependencies.create(new_dependencies)
 
     dependencies.where("dependencies.name NOT IN (?)", dependency_names).delete_all
 
