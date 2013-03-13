@@ -3,7 +3,7 @@ class DependenciesController < ApplicationController
 
   def index
     dependencies = Dependency.select(:name).uniq
-    dependencies = dependencies.where(version: params[:version].to_s) if params[:version]
+    dependencies = dependencies.includes(:vulnerability_assessments).where(version: params[:version].to_s) if params[:version]
     dependency_names = dependencies.map(&:name)
 
     @dependencies = dependency_names.map do |name|
@@ -17,7 +17,7 @@ class DependenciesController < ApplicationController
   end
 
   def show
-    @dependencies = Dependency.includes(:application).where(name: params[:id].to_s)
+    @dependencies = Dependency.includes(:application, :vulnerability_assessments).where(name: params[:id].to_s)
     @dependencies = @dependencies.where(version: params[:version].to_s) if params[:version]
   end
 end
