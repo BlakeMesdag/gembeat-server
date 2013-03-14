@@ -43,4 +43,11 @@ class ApplicationTest < ActiveSupport::TestCase
       @application.assess_dependencies_for_vulnerabilities
     end
   end
+
+  test "when updating dependencies we can leave out existing ones" do
+    @application.dependencies.create(name: "rake", version: "10.0.1")
+    @application.update_dependencies([{"name" => "rake", "version" => "10.0.3"}])
+
+    assert_equal 0, @application.errors.count
+  end
 end

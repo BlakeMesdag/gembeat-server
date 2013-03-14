@@ -13,6 +13,8 @@ class Application < ActiveRecord::Base
 
     current_dependencies = dependencies.where(name: dependency_names)
     current_dependencies.each do |dependency|
+      next unless dependency_hash[dependency.name]
+
       dependency.version = dependency_hash[dependency.name]
       dependency.save! if dependency.changed?
     end
@@ -22,7 +24,7 @@ class Application < ActiveRecord::Base
 
     dependencies.create(new_dependencies)
 
-    dependencies.where("dependencies.name NOT IN (?)", dependency_names).delete_all
+    dependencies.where("dependencies.name NOT IN (?)", dependency_names).destroy_all
 
     touch
   end
