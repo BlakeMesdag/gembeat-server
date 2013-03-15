@@ -21,6 +21,7 @@
     <thead>
       <th>Name</th>
       <th>Version</th>
+      <th>Safe Versions</th>
       <th>Vulnerability</th>
     </thead>
 
@@ -32,6 +33,9 @@
         </td>
         <td>
           <%= link_to assessment.dependency.version,url_for(controller: :dependencies, action: :show, id: assessment.dependency.name, version: assessment.dependency.version) %>
+        </td>
+        <td>
+          <%= assessment.vulnerability.versions.join("<br/>").html_safe %>
         </td>
         <td>
           <%= link_to assessment.vulnerability.identifier, vulnerability_url(assessment.vulnerability) %>

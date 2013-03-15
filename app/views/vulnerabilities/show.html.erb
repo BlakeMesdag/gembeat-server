@@ -26,6 +26,11 @@
     <h3 style="display: inline">Description: </h3>
     <h4><%= @vulnerability.description %></h4>
   </div>
+
+  <div>
+    <h3 style="display: inline">Safe Versions: </h3>
+    <h4 style="display: inline"><%= @vulnerability.versions.join(", ").html_safe %></h4>
+  </div>
 </div>
 
 <h3>Vulnerable Applications</h3>
