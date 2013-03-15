@@ -38,12 +38,6 @@ class ApplicationTest < ActiveSupport::TestCase
     end
   end
 
-  test "assess_vulnerabilities returns a list of vulernability_assessments" do
-    assert_difference "VulnerabilityAssessment.count", 1 do
-      @application.assess_dependencies_for_vulnerabilities
-    end
-  end
-
   test "when updating dependencies we can leave out existing ones" do
     @application.dependencies.create(name: "rake", version: "10.0.1")
     @application.update_dependencies([{"name" => "rake", "version" => "10.0.3"}])

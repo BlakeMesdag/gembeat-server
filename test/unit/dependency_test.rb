@@ -49,7 +49,7 @@ class DependencyTest < ActiveSupport::TestCase
   end
 
   test "vulnerable? returns true if vulnerable" do
-    @dependency.vulnerability_assessments.create(vulnerability_id: vulnerabilities(:rails_old).id, vulnerable: true)
+    vulnerability_assessments(:second_rails).update_attributes(vulnerable: true)
     assert_equal true, @dependency.vulnerable?
   end
 
@@ -70,5 +70,11 @@ class DependencyTest < ActiveSupport::TestCase
     @dependency.update_attributes(version: "3.2.12")
 
     assert_equal false, @dependency.vulnerable?
+  end
+
+  test "destroying dependency removes assessments" do
+    assert_difference "VulnerabilityAssessment.count", -2 do
+      @dependency.destroy
+    end
   end
 end

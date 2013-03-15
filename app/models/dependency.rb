@@ -2,7 +2,7 @@ class Dependency < ActiveRecord::Base
   attr_accessible :name, :version
 
   belongs_to :application, counter_cache: true
-  has_many :vulnerability_assessments
+  has_many :vulnerability_assessments, dependent: :destroy
   has_many :vulnerabilities, foreign_key: :dependency_name, primary_key: :name
 
   default_scope order("name ASC")
