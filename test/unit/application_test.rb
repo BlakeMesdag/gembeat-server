@@ -50,4 +50,13 @@ class ApplicationTest < ActiveSupport::TestCase
 
     assert_equal 0, @application.errors.count
   end
+
+  test "update_dependencies updates versions" do
+    @application.dependencies.create(name: "rake", version: "10.0.1")
+    @application.update_dependencies([{"name" => "rake", "version" => "10.0.3"}])
+
+    @application.reload
+
+    assert_equal "10.0.3", @application.dependencies.where(name: "rake").first.version
+  end
 end

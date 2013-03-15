@@ -9,14 +9,14 @@ class Application < ActiveRecord::Base
   def update_dependencies(values)
     dependency_names = values.map {|v| v["name"]}
     dependency_hash = {}
-    values.each {|d| dependency_hash[d["name"]] = d["value"]}
+    values.each {|d| dependency_hash[d["name"]] = d["version"]}
 
     current_dependencies = dependencies.where(name: dependency_names)
     current_dependencies.each do |dependency|
       next unless dependency_hash[dependency.name]
 
       dependency.version = dependency_hash[dependency.name]
-      dependency.save! if dependency.changed?
+      dependency.save!
     end
 
     current_dependency_names = current_dependencies.map(&:name)
