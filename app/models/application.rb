@@ -4,7 +4,7 @@ class Application < ActiveRecord::Base
   has_many :dependencies, dependent: :delete_all
   has_many :vulnerability_assessments, dependent: :delete_all
 
-  default_scope order("name ASC")
+  default_scope order("applications.name ASC")
 
   def update_dependencies(values)
     dependency_names = values.map {|v| v["name"]}

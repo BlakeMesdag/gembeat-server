@@ -1,7 +1,7 @@
 class Dependency < ActiveRecord::Base
   attr_accessible :name, :version
 
-  belongs_to :application
+  belongs_to :application, counter_cache: true
   has_many :vulnerability_assessments
   has_many :vulnerabilities, foreign_key: :dependency_name, primary_key: :name
 
