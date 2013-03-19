@@ -18,3 +18,5 @@ body { padding-top: 40px; }
 tr.vulnerable { background: #fee; }
 tr.not-vulnerable { background: #efe; }
 a.vulnerable { color: #e00; }
+
+th.status-icon { width: 22px; }

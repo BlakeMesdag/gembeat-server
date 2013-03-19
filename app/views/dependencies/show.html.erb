@@ -2,13 +2,15 @@
 
 <table class="table table-condensed">
   <thead>
+    <th class="status-icon"></th>
     <th>Name</th>
     <th>Version</th>
   </thead>
 
   <tbody>
     <% @dependencies.each do |dependency| %>
-    <tr class="<%= dependency.vulnerable? ? "vulnerable" : "not-vulnerable" %>">
+    <tr class="<%= vulnerable_class(dependency) %>">
+      <td><%= vulnerable_icon(dependency) %></td>
       <td>
         <%= link_to dependency.application.name, url_for(dependency.application) %>
       </td>
