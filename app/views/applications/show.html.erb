@@ -52,13 +52,15 @@
 <div style="margin-top: 10px">
   <table class="table table-condensed">
     <thead>
+      <th class="status-icon"></th>
       <th>Name</th>
       <th>Version</th>
     </thead>
 
     <tbody>
       <% @application.dependencies.each do |dependency| %>
-      <tr class="<%= dependency.vulnerable? ? "vulnerable" : "not-vulnerable" %>">
+      <tr class="<%= vulnerable_class(dependency) %>">
+        <td><%= vulnerable_icon(dependency) %></td>
         <td>
           <%= link_to dependency.name, url_for(controller: :dependencies, action: :show, id: dependency.name) %>
         </td>

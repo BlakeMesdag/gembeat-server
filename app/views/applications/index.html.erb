@@ -3,6 +3,7 @@
 <% if @applications.count > 0 %>
   <table class="table table-condensed">
     <thead>
+      <th class="status-icon"></th>
       <th>Name</th>
       <th>Description</th>
       <th>Github Url</th>
@@ -11,7 +12,8 @@
 
     <tbody>
       <% @applications.each do |application| %>
-      <tr class="<%= application.vulnerable? ? "vulnerable" : "not-vulnerable" %>">
+      <tr class="<%= vulnerable_class(application) %>">
+        <td><%= vulnerable_icon(application) %></td>
         <td><%= link_to application.name, application_url(application) %></td>
         <td><%= application.description %></td>
         <td><% if application.github_url %><%= link_to application.github_url, application.github_url %><% end %></td>
