@@ -20,6 +20,6 @@ class PulseController < ApplicationController
 
   def load_application
     return unless params[:application]
-    @application = Application.where(:token => params[:application].delete(:token).to_s).first
+    @application = Application.includes(:dependencies).where(:token => params[:application].delete(:token).to_s).first
   end
 end
