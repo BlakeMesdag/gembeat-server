@@ -20,6 +20,14 @@ class PulseController < ApplicationController
 
   def load_application
     return unless params[:application]
-    @application = Application.includes(:dependencies).where(:token => params[:application].delete(:token).to_s).first
+    token = params[:application].delete(:token).to_s
+
+    @application = Application.includes(:dependencies).where(token: token).first
+
+    if !@application && ENV['REGISTRATION_TOKEN'] == params.fetch(:registration_token, nil)
+      @application = Application.where(:name => params[:application][:name]).first_or_initialize
+      @application.token = token
+      @application.save!
+    end
   end
 end
