@@ -47,5 +47,5 @@ class Application < ActiveRecord::Base
 
   validates :name, :uniqueness => true
 
-  before_create :generate_token
+  before_create :generate_token, :unless => :token
 end

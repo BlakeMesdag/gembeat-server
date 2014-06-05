@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.18'
 
 group :production do
   gem 'pg'
@@ -13,7 +13,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
-  gem 'therubyracer', '~> 0.9.10'
+  gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
 end
